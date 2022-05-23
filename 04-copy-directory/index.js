@@ -10,11 +10,21 @@ fs.mkdir(__dirname + '/files-copy', {
     if (err) throw err;
 });
 
-fs.readdir(__dirname + '/files', (err, files) => {
+fs.readdir(__dirname + '/files-copy', (err, files) => {
     if (err) throw err;
     files.forEach(file => {
-        fs.copyFile(folderFiles + `/${file}`, folderFilesCopy + `/${file}`, (err) => {
+        fs.unlink(folderFilesCopy + '/' + file, err => {
             if (err) throw err;
         });
     });
+
+    fs.readdir(__dirname + '/files', (err, files) => {
+        if (err) throw err;
+        files.forEach(file => {
+            fs.copyFile(folderFiles + `/${file}`, folderFilesCopy + `/${file}`, (err) => {
+                if (err) throw err;
+            });
+        });
+    });
+
 });
