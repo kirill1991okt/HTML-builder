@@ -94,7 +94,7 @@ fs.readdir(assetsPath, {
 
 
 async function getComponents() {
-    const data = await fs.promises.readFile(__dirname + '/template1.html');
+    const data = await fs.promises.readFile(__dirname + '/template.html');
 
     let arrComponents = data.toString().match(/[^{{\}}]+(?=})/g);
 
@@ -137,7 +137,7 @@ async function replaceComponents(nameFile, obj) {
 
     }
 
-    await replaceComponents('template1.html', obj);
+    await replaceComponents('template.html', obj);
 
     // await copyDir(assetsPath, assetsDistPath);
 
